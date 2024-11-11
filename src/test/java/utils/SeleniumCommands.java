@@ -13,41 +13,41 @@ import java.util.function.Function;
 
 public class SeleniumCommands {
 
-  private static final SeleniumCommands instance = new SeleniumCommands();
+    private static final SeleniumCommands instance = new SeleniumCommands();
 
-  public void waitForAndSendKeys(By selector, CharSequence... input) {
-    waitForAndGetVisibleElementLocated(selector).sendKeys(input);
-  }
+    public void waitForAndSendKeys(By selector, CharSequence... input) {
+        waitForAndGetVisibleElementLocated(selector).sendKeys(input);
+    }
 
-  public void waitForAndClickOnElementLocated(By selector) {
-    waitForElementToBeClickableLocated(selector).click();
-  }
+    public void waitForAndClickOnElementLocated(By selector) {
+        waitForElementToBeClickableLocated(selector).click();
+    }
 
-  public WebElement waitForAndGetVisibleElementLocated(By selector) {
-    return until(ExpectedConditions.visibilityOfElementLocated(selector));
-  }
+    public WebElement waitForAndGetVisibleElementLocated(By selector) {
+        return until(ExpectedConditions.visibilityOfElementLocated(selector));
+    }
 
-  public List<WebElement> waitForAndGetAllVisibleElementsLocated(By selector) {
-    return until(ExpectedConditions.visibilityOfAllElementsLocatedBy(selector));
-  }
+    public List<WebElement> waitForAndGetAllVisibleElementsLocated(By selector) {
+        return until(ExpectedConditions.visibilityOfAllElementsLocatedBy(selector));
+    }
 
-  public WebElement waitForElementToBeClickableLocated(By selector) {
-    return until(ExpectedConditions.elementToBeClickable(selector));
-  }
+    public WebElement waitForElementToBeClickableLocated(By selector) {
+        return until(ExpectedConditions.elementToBeClickable(selector));
+    }
 
-  public String getAttributeFromElement(WebElement element, String attribute) {
-    return element.getAttribute(attribute);
-  }
+    public String getAttributeFromElement(WebElement element, String attribute) {
+        return element.getAttribute(attribute);
+    }
 
-  private WebDriverWait defaultWait() {
-    return new WebDriverWait(Hooks.getDriver(), Duration.ofSeconds(30));
-  }
+    private WebDriverWait defaultWait() {
+        return new WebDriverWait(Hooks.getDriver(), Duration.ofSeconds(10));
+    }
 
-  private <V> V until(Function<? super WebDriver, V> expectedCondition) {
-    return defaultWait().until(expectedCondition);
-  }
+    private <V> V until(Function<? super WebDriver, V> expectedCondition) {
+        return defaultWait().until(expectedCondition);
+    }
 
-  public static SeleniumCommands getCommands() {
-    return instance;
-  }
+    public static SeleniumCommands getCommands() {
+        return instance;
+    }
 }
